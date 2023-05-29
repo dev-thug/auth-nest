@@ -1,6 +1,7 @@
 // src/auth/auth.module.ts
 
 import { APP_GUARD } from '@nestjs/core';
+import { AdminModule } from 'src/admin/admin.module';
 import { AuthController } from './auth.controller';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
@@ -11,6 +12,7 @@ import { jwtConstants } from './constants';
 
 @Module({
   imports: [
+    AdminModule,
     UserModule,
     JwtModule.register({
       global: true,

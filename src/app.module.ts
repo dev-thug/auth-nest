@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { AdminModule } from './admin/admin.module';
+import { MailModule } from './mail/mail.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -29,6 +31,8 @@ import configuration from './config/configuration';
         synchronize: true,
       }),
     }),
+    AdminModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
