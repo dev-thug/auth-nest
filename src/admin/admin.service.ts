@@ -13,7 +13,7 @@ export class AdminService {
 
   constructor() {
     this.settings = {
-      signupMode: SignupMode.NoEmailVerification,
+      signupMode: SignupMode.TOTP,
     };
   }
 

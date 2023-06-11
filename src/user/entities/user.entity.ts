@@ -1,6 +1,7 @@
 // src/user/entities/user.entity.ts
 
 import {
+  BeforeInsert,
   BeforeUpdate,
   Column,
   CreateDateColumn,
@@ -10,6 +11,7 @@ import {
 } from 'typeorm';
 
 import { ConfirmationStatus } from 'src/common/enums/confirmation-status.enums';
+import { Role } from 'src/common/enums/role.enum';
 import { UserStatus } from 'src/common/enums/user-status.enums';
 
 @Entity()
@@ -48,6 +50,13 @@ export class User {
 
   @Column({ nullable: true })
   approvedAt: Date;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.User,
+  })
+  role: Role;
 
   @BeforeUpdate()
   setApprovedAt() {

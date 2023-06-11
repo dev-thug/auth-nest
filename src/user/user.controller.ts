@@ -1,24 +1,34 @@
 //src/user/user.controller.ts
 
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Request, Put } from '@nestjs/common';
 
-import { Public } from 'src/auth/decorators/public.decorator';
-import { User } from './entities/user.entity';
+import { Role } from 'src/common/enums/role.enum';
+import { Roles } from 'src/common/decorators/roles.decorator';
 import { UserService } from './user.service';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Public()
   @Get('/all')
+  @Roles(Role.Admin)
   fineAll() {
     return this.userService.findAll();
   }
 
-  // @Public()
-  // @Post()
-  // save(@Body() user: User) {
-  //   return this.userService.save(user);
-  // }
+  @Put('/password')
+  changePassword(
+    @Request() request: any,
+    @Body() passwordDto: ChangePasswordDto,
+  ) {
+    const email = request.user.username;
+    const { oldPassword, newPassword, newPasswordConfirm } = passwordDto;
+    return this.userService.changePassword(
+      email,
+      oldPassword,
+      newPassword,
+      newPasswordConfirm,
+    );
+  }
 }

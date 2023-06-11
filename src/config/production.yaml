@@ -1,11 +1,20 @@
-# src/config/production.yaml
+# src/config/development.yaml
 server:
   port: 3000
 
 db:
   postgres:
-    host: svc.sel3.cloudtype.app
-    port: 32004
+    host: localhost
+    port: 5432
     username: root
-    password: 17xqnr2alghwr1ia
-    database: auth
+    password: postgres
+    database: postgres
+
+redis:
+  host: localhost
+  port: 1234
+
+mail:
+  auth:
+    user: developthug@gmail.com
+    pass: testtest
