@@ -45,9 +45,9 @@ export class MailService {
   private getText(jwt: string, totp?: string) {
     switch (this.signUpMode) {
       case SignupMode.LINK:
-        return `Your verification link is: http://localhost:3001/link/${jwt}`;
+        return `Your verification link is: https://auth-react-one.vercel.app/link/${jwt}`;
       case SignupMode.TOTP:
-        return `Your verification code is: ${totp}, link is: http://localhost:3001/totp/${jwt}`;
+        return `Your verification code is: ${totp}, link is: https://auth-react-one.vercel.app/totp/${jwt}`;
     }
   }
 }
