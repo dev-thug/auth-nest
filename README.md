@@ -1,73 +1,35 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## 소개
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 데모 프론트
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- https://auth-react-one.vercel.app/
 
-## Description
+## 상세 기능
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### 사용자 등록 및 로그인
 
-## Installation
+- 사용자 시스템에 회원가입시 이메일 검증 프로세스(링크, 인증코드)
+- 사용자 로그인후 access-token, refresh-token 생성
+- 로그인된 사용자 refresh-token 캐시서버에서 관리
 
-```bash
-$ yarn install
-```
+### 비밀번호 관리
 
-## Running the app
+- Salt 해싱 기술을 사용한 암호의 안전한 저장
 
-```bash
-# development
-$ yarn run start
+### 가입 모드 구성
 
-# watch mode
-$ yarn run start:dev
+- 가입 프로세스를 LINK, TOTP, NoEmailVerification 모드로 런타임중 업데이트
+- LINK로 설정되어 있는 경우 확인 링크가 사용자의 이메일로 전송
+- TOTP로 설정된 경우 확인 코드가 생성되어 사용자의 이메일로 전송
+- NoEmailVerification로 가입 모드가 설정된 경우 사용자 이메일검증X
 
-# production mode
-$ yarn run start:prod
-```
+### 토큰 관리
 
-## Test
+- 사용자 로그아웃시 토큰 취소 기능
+- refresh-token으로 access-token 발급
+- redis 캐시 서버를 사용하여 token 관리
 
-```bash
-# unit tests
-$ yarn run test
+### 인증과 인가
 
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- 권한 부여하여 API에 대한 액세스를 제어
+- Gurad에서 사용자 인증 및 허가 처리
