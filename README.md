@@ -25,7 +25,8 @@
 
 ### 토큰 관리
 
-- 사용자 로그아웃시 토큰 취소 기능
+- access-token 15분 만료, refresh-token 30일 만료
+- 사용자 로그아웃시 refresh-token 취소 기능
 - refresh-token으로 access-token 발급
 - redis 캐시 서버를 사용하여 token 관리
 
