@@ -83,6 +83,10 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException();
     }
+
+    if (user.confirmationStatus !== ConfirmationStatus.CONFIRMED) {
+      throw new UnauthorizedException('Not confirmed user');
+    }
     const payload: Payload = {
       sub: user.id,
       username: user.email,
