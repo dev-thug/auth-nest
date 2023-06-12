@@ -8,8 +8,7 @@ import { SignupMode } from 'src/common/enums/sign-mode.enum';
 @Injectable()
 export class MailService {
   private transporter: nodemailer.Transporter;
-  // private mailOptions: MailOptions;
-  private signUpMode: SignupMode;
+
   constructor(
     private readonly adminService: AdminService,
     private configService: ConfigService,
@@ -23,8 +22,6 @@ export class MailService {
         pass: process.env.MAIL_PASS,
       },
     });
-
-    this.signUpMode = this.adminService.getSignupMode();
   }
 
   async sendMail(to: string, jwt: string, totp?: string) {
@@ -43,7 +40,7 @@ export class MailService {
   }
 
   private getText(jwt: string, totp?: string) {
-    switch (this.signUpMode) {
+    switch (this.adminService.getSignupMode()) {
       case SignupMode.LINK:
         return `Your verification link is: https://auth-react-one.vercel.app/link/${jwt}`;
       case SignupMode.TOTP:
