@@ -118,6 +118,12 @@ export class UserService {
       );
     }
 
+    if (user.email === 'admin@domain.com') {
+      throw new BadRequestException(
+        'New password and password confirmation do not match',
+      );
+    }
+
     user.password = await new Bcrypt().hashPassword(newPassword);
     await this.userRepository.save(user);
   }
